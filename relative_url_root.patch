@@ -1,7 +1,7 @@
 diff -ur a/etc/apache2/sites-available/000-default.conf b/etc/apache2/sites-available/000-default.conf
---- a/etc/apache2/sites-available/000-default.conf	2018-10-31 10:33:10.027230627 +0000
-+++ b/etc/apache2/sites-available/000-default.conf	2018-10-31 13:37:26.189541663 +0000
-@@ -11,6 +11,8 @@
+--- a/etc/apache2/sites-available/000-default.conf
++++ b/etc/apache2/sites-available/000-default.conf
+@@ -11,6 +11,9 @@
  	ServerAdmin webmaster@localhost
  	DocumentRoot /var/www/html
  
