@@ -7,7 +7,12 @@ FROM alpine AS build
 
 # Set up work directory
 WORKDIR /home
-RUN mkdir -p etc/apache2/sites-available
+RUN mkdir -p\
+ etc/apache2/mods-enabled\
+ etc/apache2/sites-available
+
+# Enable the desired modules: rewrite
+RUN ln -s ../mods-available/rewrite.load etc/apache2/mods-enabled/
 
 # Get the 000-default.conf file and patch it
 COPY --from=orig /etc/apache2/sites-available/000-default.conf\

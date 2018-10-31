@@ -1,12 +1,23 @@
 diff -ur a/etc/apache2/sites-available/000-default.conf b/etc/apache2/sites-available/000-default.conf
 --- a/etc/apache2/sites-available/000-default.conf	2018-10-31 10:33:10.027230627 +0000
 +++ b/etc/apache2/sites-available/000-default.conf	2018-10-31 13:37:26.189541663 +0000
-@@ -11,6 +11,8 @@
+@@ -11,6 +11,20 @@
  	ServerAdmin webmaster@localhost
  	DocumentRoot /var/www/html
  
-+	# Shift the URL that everything is served from to /wiki.
-+	Alias /wiki /var/www/html
++	# Shift the URL that everything is served from based on the
++	# RELATIVE_URL_ROOT environment variable. The variable must start with a
++	# slash and contain one or more directories. It must not end in a slash.
++	# If the variable is missing, serve from the default /.
++	#RewriteEngine On
++	#LogLevel alert rewrite:trace4
++	#RewriteCond "%{env:RELATIVE_URL_ROOT}" =""
++	#RewriteRule ".*" "-" [S=2]
++	#RewriteCond expr "%{REQUEST_URI} -strmatch '%{env:RELATIVE_URL_ROOT}*'"
++	#RewriteRule ".*.*" "%{REQUEST_SCHEME}://%{HTTP_HOST}%1" [S=1]
++	#RewriteRule ".*.*.*" "-" [F]
++
++	Alias "/wiki" %{env:DOCUMENT_ROOT}
 +
  	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
  	# error, crit, alert, emerg.
