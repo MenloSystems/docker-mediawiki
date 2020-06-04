@@ -5,6 +5,10 @@ FROM mediawiki AS orig
 FROM alpine AS build
 # This build stage actually prepares all files
 
+# Install patch tool
+# Run `docker build --no-cache .` to update dependencies
+RUN apk add --no-cache patch
+
 # Set up work directory
 WORKDIR /home
 RUN mkdir -p etc/apache2/sites-available var/www/html/extensions
