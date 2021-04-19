@@ -20,7 +20,8 @@ COPY relative_url_root.patch /tmp/
 RUN patch -p1 </tmp/relative_url_root.patch
 
 # Install PluggableAuth extension
-RUN for ext in LDAPAuthentication2-REL1_31-8bd6bc8.tar.gz \
+RUN ERR=0; \
+    for ext in LDAPAuthentication2-REL1_36-635748c.tar.gz \
                LDAPAuthorization-REL1_31-53e1ada.tar.gz \
                LDAPGroups-REL1_31-5a27bd8.tar.gz \
                LDAPProvider-REL1_31-7f81741.tar.gz \
@@ -30,10 +31,10 @@ RUN for ext in LDAPAuthentication2-REL1_31-8bd6bc8.tar.gz \
                Popups-REL1_34-375d27b.tar.gz \
                UploadWizard-REL1_34-e8b6892.tar.gz \
     ; do \
-        wget -O/tmp/${ext} https://extdist.wmflabs.org/dist/extensions/${ext} && \
-        tar -zxf /tmp/${ext} -C var/www/html/extensions; \
-      done
-
+      wget -O/tmp/${ext} https://extdist.wmflabs.org/dist/extensions/${ext} && \
+      tar -zxf /tmp/${ext} -C var/www/html/extensions || ERR=1; \
+    done; \
+    return $ERR
 
 FROM mediawiki
 # This build stage is the final output image
