@@ -36,6 +36,14 @@ RUN ERR=0; \
     done; \
     return $ERR
 
+# Disable code execution in vendor and tests of plugins
+RUN ERR=0; \
+    for i in var/www/html/extensions/*/vendor \
+             var/www/html/extensions/*/tests; do \
+      echo php_flag engine off >>$i/.htaccess || ERR=1; \
+    done; \
+    return $ERR
+
 FROM mediawiki
 # This build stage is the final output image
 
