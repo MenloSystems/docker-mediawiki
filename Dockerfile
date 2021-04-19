@@ -22,14 +22,14 @@ RUN patch -p1 </tmp/relative_url_root.patch
 # Install PluggableAuth extension
 RUN ERR=0; \
     for ext in LDAPAuthentication2-REL1_36-635748c.tar.gz \
-               LDAPAuthorization-REL1_31-53e1ada.tar.gz \
-               LDAPGroups-REL1_31-5a27bd8.tar.gz \
-               LDAPProvider-REL1_31-7f81741.tar.gz \
-               LDAPUserInfo-REL1_31-da95a07.tar.gz \
-               Math-REL1_34-b1a022f.tar.gz \
-               PluggableAuth-REL1_34-17fb1ea.tar.gz \
-               Popups-REL1_34-375d27b.tar.gz \
-               UploadWizard-REL1_34-e8b6892.tar.gz \
+               LDAPAuthorization-REL1_36-a6f8420.tar.gz \
+               LDAPGroups-REL1_36-0097b00.tar.gz \
+               LDAPProvider-REL1_36-d318d26.tar.gz \
+               LDAPUserInfo-REL1_36-e8a8823.tar.gz \
+               Math-REL1_36-b0f07ee.tar.gz \
+               PluggableAuth-REL1_36-d74e6e1.tar.gz \
+               Popups-REL1_36-ddf574a.tar.gz \
+               UploadWizard-REL1_36-6b1d096.tar.gz \
     ; do \
       wget -O/tmp/${ext} https://extdist.wmflabs.org/dist/extensions/${ext} && \
       tar -zxf /tmp/${ext} -C var/www/html/extensions || ERR=1; \
