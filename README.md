@@ -22,6 +22,9 @@ several plugins and their dependencies:
 * [Math][9]
 * [Popups][10]
 
+This image is intended for internal use and is currently not hardened
+for use in a public network. Use at your own risk.
+
 [1]: <https://hub.docker.com/_/mediawiki>
 [2]: <https://www.mediawiki.org/wiki/Extension:LDAPAuthentication2>
 [3]: <https://www.mediawiki.org/wiki/Extension:LDAPAuthorization>
